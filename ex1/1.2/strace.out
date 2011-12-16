@@ -1,0 +1,881 @@
+execve("/usr/bin/strace", ["strace", "echo"], [/* 16 vars */]) = 0
+brk(0)                                  = 0x8086000
+access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
+mmap2(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb779f000
+access("/etc/ld.so.preload", R_OK)      = -1 ENOENT (No such file or directory)
+open("/etc/ld.so.cache", O_RDONLY)      = 3
+fstat64(3, {st_mode=S_IFREG|0644, st_size=62290, ...}) = 0
+mmap2(NULL, 62290, PROT_READ, MAP_PRIVATE, 3, 0) = 0xb778f000
+close(3)                                = 0
+access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
+open("/lib/i686/cmov/libc.so.6", O_RDONLY) = 3
+read(3, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0\260l\1\0004\0\0\0\34"..., 512) = 512
+fstat64(3, {st_mode=S_IFREG|0755, st_size=1331684, ...}) = 0
+mmap2(NULL, 1337704, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0xb7648000
+mmap2(0xb7789000, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x141) = 0xb7789000
+mmap2(0xb778c000, 10600, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0xb778c000
+close(3)                                = 0
+mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7647000
+set_thread_area({entry_number:-1 -> 6, base_addr:0xb76476c0, limit:1048575, seg_32bit:1, contents:0, read_exec_only:0, limit_in_pages:1, seg_not_present:0, useable:1}) = 0
+mprotect(0xb7789000, 8192, PROT_READ)   = 0
+mprotect(0xb77bd000, 4096, PROT_READ)   = 0
+munmap(0xb778f000, 62290)               = 0
+brk(0)                                  = 0x8086000
+brk(0x80a7000)                          = 0x80a7000
+getuid32()                              = 20078
+getgid32()                              = 20000
+stat64("/usr/local/bin/echo", 0xbfd68d74) = -1 ENOENT (No such file or directory)
+stat64("/usr/bin/echo", 0xbfd68d74)     = -1 ENOENT (No such file or directory)
+stat64("/bin/echo", {st_mode=S_IFREG|0755, st_size=24228, ...}) = 0
+stat64("/bin/echo", {st_mode=S_IFREG|0755, st_size=24228, ...}) = 0
+clone(child_stack=0, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0xb7647728) = 4727
+rt_sigaction(SIGTTOU, {SIG_IGN}, NULL, 8) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigaction(SIGTTIN, {SIG_IGN}, NULL, 8) = 0
+rt_sigaction(SIGHUP, {0x8049760, [], 0}, NULL, 8) = 0
+rt_sigaction(SIGINT, {0x8049760, [], 0}, NULL, 8) = 0
+rt_sigaction(SIGQUIT, {0x8049760, [], 0}, NULL, 8) = 0
+rt_sigaction(SIGPIPE, {0x8049760, [], 0}, NULL, 8) = 0
+rt_sigaction(SIGTERM, {0x8049760, [], 0}, NULL, 8) = 0
+rt_sigaction(SIGCHLD, {SIG_DFL}, NULL, 8) = 0
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGSTOP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0xb]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0xffffffda]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EBX, [0xbfd68e14]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ECX, [0xbfd6a038]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EDX, [0xbfd6a040]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfd68e14, [0x6e69622f]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfd68e18, [0x6863652f]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfd68e1c, [0x6863006f]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfd6a038, [0xbfd6be77]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfd6be74, [0x65006563]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfd6be78, [0x6f6863]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfd6a03c, [0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfd6a040, [0xbfd6be7c]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfd6a044, [0xbfd6be87]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfd6a048, [0xbfd6be97]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfd6a04c, [0xbfd6beb7]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfd6a050, [0xbfd6beca]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfd6a054, [0xbfd6bed8]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfd6a058, [0xbfd6bef0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfd6a05c, [0xbfd6bf1d]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfd6a060, [0xbfd6bf40]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfd6a064, [0xbfd6bf4b]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfd6a068, [0xbfd6bf53]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfd6a06c, [0xbfd6bf6d]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfd6a070, [0xbfd6bf7e]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfd6a074, [0xbfd6bfaf]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfd6a078, [0xbfd6bfbe]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfd6a07c, [0xbfd6bfd0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfd6a080, [0]) = 0
+write(2, "execve(\"/bin/echo\", [\"echo\"], [/*"..., 45) = 45
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0xb]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0]) = 0
+write(2, ") = 0\n"..., 6)               = 6
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0xb]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0]) = 0
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0x2d]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0xffffffda]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EBX, [0]) = 0
+write(2, "brk(0"..., 5)                 = 5
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0x2d]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0x804f000]) = 0
+write(2, ")                                "..., 47) = 47
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0x21]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0xffffffda]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EBX, [0xb7843589]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ECX, [0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xb7843588, [0x74652f00]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xb784358c, [0x646c2f63]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xb7843590, [0x2e6f732e]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xb7843594, [0x77686f6e]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xb7843598, [0x706163]) = 0
+write(2, "access(\"/etc/ld.so.nohwcap\", F_OK"..., 33) = 33
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0x21]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0xfffffffe]) = 0
+write(2, ")      = -1 ENOENT (No such file "..., 47) = 47
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0xc0]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0xffffffda]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EBX, [0]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ECX, [0x2000]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EDX, [0x3]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ESI, [0x22]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EDI, [0xffffffff]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EBP, [0]) = 0
+write(2, "mmap2(NULL, 8192, PROT_READ|PROT_"..., 72) = 72
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0xc0]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0xb7827000]) = 0
+write(2, ") = 0xb7827000\n"..., 15)     = 15
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0x21]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0xffffffda]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EBX, [0xb7843241]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ECX, [0x4]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xb7843240, [0x74652f00]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xb7843244, [0x646c2f63]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xb7843248, [0x2e6f732e]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xb784324c, [0x6c657270]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xb7843250, [0x64616f]) = 0
+write(2, "access(\"/etc/ld.so.preload\", R_OK"..., 33) = 33
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0x21]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0xfffffffe]) = 0
+write(2, ")      = -1 ENOENT (No such file "..., 47) = 47
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0x5]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0xffffffda]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EBX, [0xb7843525]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ECX, [0]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EDX, [0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xb7843524, [0x74652f00]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xb7843528, [0x646c2f63]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xb784352c, [0x2e6f732e]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xb7843530, [0x68636163]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xb7843534, [0x73200065]) = 0
+write(2, "open(\"/etc/ld.so.cache\", O_RDONLY"..., 33) = 33
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0x5]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0x3]) = 0
+write(2, ")      = 3\n"..., 11)         = 11
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0xc5]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0xffffffda]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EBX, [0x3]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ECX, [0xbfe91ab4]) = 0
+write(2, "fstat64(3, "..., 11)          = 11
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0xc5]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe91ab4, [0x10]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe91ab8, [0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe91abc, [0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe91ac0, [0x72c160]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe91ac4, [0x81a4]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe91ac8, [0x1]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe91acc, [0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe91ad0, [0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe91ad4, [0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe91ad8, [0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe91adc, [0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe91ae0, [0xf352]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe91ae4, [0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe91ae8, [0x80000]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe91aec, [0x88]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe91af0, [0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe91af4, [0x4ebbaccc]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe91af8, [0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe91afc, [0x4ca08a34]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe91b00, [0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe91b04, [0x4ca08b46]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe91b08, [0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe91b0c, [0x72c160]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe91b10, [0]) = 0
+write(2, "{st_mode=S_IFREG|0644, st_size=62"..., 48) = 48
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0xc0]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0xffffffda]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EBX, [0]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ECX, [0xf352]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EDX, [0x1]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ESI, [0x2]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EDI, [0x3]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EBP, [0]) = 0
+write(2, "mmap2(NULL, 62290, PROT_READ, MAP"..., 47) = 47
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0xc0]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0xb7817000]) = 0
+write(2, ") = 0xb7817000\n"..., 15)     = 15
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0x6]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0xffffffda]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EBX, [0x3]) = 0
+write(2, "close(3"..., 7)               = 7
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0x6]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0]) = 0
+write(2, ")                                "..., 37) = 37
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0x21]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0xffffffda]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EBX, [0xb7843589]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ECX, [0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xb7843588, [0x74652f00]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xb784358c, [0x646c2f63]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xb7843590, [0x2e6f732e]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xb7843594, [0x77686f6e]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xb7843598, [0x706163]) = 0
+write(2, "access(\"/etc/ld.so.nohwcap\", F_OK"..., 33) = 33
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0x21]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0xfffffffe]) = 0
+write(2, ")      = -1 ENOENT (No such file "..., 47) = 47
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0x5]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0xffffffda]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EBX, [0xb7824f3d]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ECX, [0]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EDX, [0xf352]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xb7824f3c, [0x696c2f00]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xb7824f40, [0x36692f62]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xb7824f44, [0x632f3638]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xb7824f48, [0x2f766f6d]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xb7824f4c, [0x6362696c]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xb7824f50, [0x2e6f732e]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xb7824f54, [0x696c0036]) = 0
+write(2, "open(\"/lib/i686/cmov/libc.so.6\", "..., 41) = 41
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0x5]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0x3]) = 0
+write(2, ") = 3\n"..., 6)               = 6
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0x3]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0xffffffda]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EBX, [0x3]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ECX, [0xbfe91c24]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EDX, [0x200]) = 0
+write(2, "read(3, "..., 8)              = 8
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0x3]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0x200]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe91c24, [0x464c457f]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe91c28, [0x10101]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe91c2c, [0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe91c30, [0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe91c34, [0x30003]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe91c38, [0x1]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe91c3c, [0x16cb0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe91c40, [0x34]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe91c44, [0x14471c]) = 0
+write(2, "\"\\177ELF\\1\\1\\1\\0\\0\\0\\0\\0\\0\\0\\0\\0\\"..., 86) = 86
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0xc5]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0xffffffda]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EBX, [0x3]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ECX, [0xbfe91b30]) = 0
+write(2, "fstat64(3, "..., 11)          = 11
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0xc5]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe91b30, [0x11]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe91b34, [0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe91b38, [0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe91b3c, [0x4f0031]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe91b40, [0x81ed]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe91b44, [0x1]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe91b48, [0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe91b4c, [0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe91b50, [0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe91b54, [0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe91b58, [0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe91b5c, [0x1451e4]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe91b60, [0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe91b64, [0x80000]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe91b68, [0xa38]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe91b6c, [0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe91b70, [0x4ebbc7a1]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe91b74, [0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe91b78, [0x4b0bba95]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe91b7c, [0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe91b80, [0x4b17e646]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe91b84, [0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe91b88, [0x4f0031]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe91b8c, [0]) = 0
+write(2, "{st_mode=S_IFREG|0755, st_size=13"..., 50) = 50
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0xc0]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0xffffffda]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EBX, [0]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ECX, [0x146968]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EDX, [0x5]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ESI, [0x802]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EDI, [0x3]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EBP, [0]) = 0
+write(2, "mmap2(NULL, 1337704, PROT_READ|PR"..., 73) = 73
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0xc0]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0xb76d0000]) = 0
+write(2, ") = 0xb76d0000\n"..., 15)     = 15
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0xc0]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0xffffffda]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EBX, [0xb7811000]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ECX, [0x3000]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EDX, [0x3]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ESI, [0x812]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EDI, [0x3]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EBP, [0x141]) = 0
+write(2, "mmap2(0xb7811000, 12288, PROT_REA"..., 92) = 92
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0xc0]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0xb7811000]) = 0
+write(2, ") = 0xb7811000\n"..., 15)     = 15
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0xc0]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0xffffffda]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EBX, [0xb7814000]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ECX, [0x2968]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EDX, [0x3]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ESI, [0x32]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EDI, [0xffffffff]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EBP, [0]) = 0
+write(2, "mmap2(0xb7814000, 10600, PROT_REA"..., 89) = 89
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0xc0]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0xb7814000]) = 0
+write(2, ") = 0xb7814000\n"..., 15)     = 15
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0x6]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0xffffffda]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EBX, [0x3]) = 0
+write(2, "close(3"..., 7)               = 7
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0x6]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0]) = 0
+write(2, ")                                "..., 37) = 37
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0xc0]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0xffffffda]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EBX, [0]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ECX, [0x1000]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EDX, [0x3]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ESI, [0x22]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EDI, [0xffffffff]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EBP, [0]) = 0
+write(2, "mmap2(NULL, 4096, PROT_READ|PROT_"..., 72) = 72
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0xc0]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0xb76cf000]) = 0
+write(2, ") = 0xb76cf000\n"..., 15)     = 15
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0xf3]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0xffffffda]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EBX, [0xbfe92044]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe92044, [0xffffffff]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe92048, [0xb76cf8d0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe9204c, [0xfffff]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe92050, [0x51]) = 0
+write(2, "set_thread_area({entry_number:-1 "..., 36) = 36
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0xf3]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe92044, [0x6]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe92048, [0xb76cf8d0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe9204c, [0xfffff]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe92050, [0x51]) = 0
+write(2, "6, base_addr:0xb76cf8d0, limit:10"..., 136) = 136
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0x7d]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0xffffffda]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EBX, [0xb7811000]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ECX, [0x2000]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EDX, [0x1]) = 0
+write(2, "mprotect(0xb7811000, 8192, PROT_R"..., 36) = 36
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0x7d]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0]) = 0
+write(2, ")   = 0\n"..., 8)             = 8
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0x7d]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0xffffffda]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EBX, [0xb7845000]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ECX, [0x1000]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EDX, [0x1]) = 0
+write(2, "mprotect(0xb7845000, 4096, PROT_R"..., 36) = 36
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0x7d]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0]) = 0
+write(2, ")   = 0\n"..., 8)             = 8
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0x5b]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0xffffffda]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EBX, [0xb7817000]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ECX, [0xf352]) = 0
+write(2, "munmap(0xb7817000, 62290"..., 24) = 24
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0x5b]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0]) = 0
+write(2, ")               = 0\n"..., 20) = 20
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0x5]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0xffffffda]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EBX, [0xb77f7784]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ECX, [0x8000]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EDX, [0xb7828838]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xb77f7784, [0x7273752f]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xb77f7788, [0x62696c2f]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xb77f778c, [0x636f6c2f]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xb77f7790, [0x2f656c61]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xb77f7794, [0x61636f6c]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xb77f7798, [0x612d656c]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xb77f779c, [0x69686372]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xb77f77a0, [0x6576]) = 0
+write(2, "open(\"/usr/lib/locale/locale-arch"..., 59) = 59
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0x5]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0x3]) = 0
+write(2, ") = 3\n"..., 6)               = 6
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0xc5]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0xffffffda]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EBX, [0x3]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ECX, [0xb7813b00]) = 0
+write(2, "fstat64(3, "..., 11)          = 11
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0xc5]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xb7813b00, [0x11]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xb7813b04, [0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xb7813b08, [0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xb7813b0c, [0x728051]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xb7813b10, [0x81a4]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xb7813b14, [0x1]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xb7813b18, [0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xb7813b1c, [0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xb7813b20, [0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xb7813b24, [0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xb7813b28, [0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xb7813b2c, [0x1f9ef0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xb7813b30, [0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xb7813b34, [0x80000]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xb7813b38, [0xf68]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xb7813b3c, [0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xb7813b40, [0x4ebbc799]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xb7813b44, [0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xb7813b48, [0x4b17e64d]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xb7813b4c, [0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xb7813b50, [0x4b17e66b]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xb7813b54, [0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xb7813b58, [0x728051]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xb7813b5c, [0]) = 0
+write(2, "{st_mode=S_IFREG|0644, st_size=20"..., 50) = 50
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0xc0]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0xffffffda]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EBX, [0]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ECX, [0x1f9ef0]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EDX, [0x1]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ESI, [0x2]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EDI, [0x3]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EBP, [0]) = 0
+write(2, "mmap2(NULL, 2072304, PROT_READ, M"..., 49) = 49
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0xc0]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0xb74d5000]) = 0
+write(2, ") = 0xb74d5000\n"..., 15)     = 15
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0x6]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0xffffffda]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EBX, [0x3]) = 0
+write(2, "close(3"..., 7)               = 7
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0x6]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0]) = 0
+write(2, ")                                "..., 37) = 37
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0x2d]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0xffffffda]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EBX, [0]) = 0
+write(2, "brk(0"..., 5)                 = 5
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0x2d]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0x804f000]) = 0
+write(2, ")                                "..., 47) = 47
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0x2d]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0xffffffda]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EBX, [0x8070000]) = 0
+write(2, "brk(0x8070000"..., 13)        = 13
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0x2d]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0x8070000]) = 0
+write(2, ")                          = 0x80"..., 39) = 39
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0xc5]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0xffffffda]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EBX, [0x1]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ECX, [0xbfe920e0]) = 0
+write(2, "fstat64(1, "..., 11)          = 11
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0xc5]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe920e0, [0x9]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe920e4, [0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe920e8, [0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe920ec, [0x5]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe920f0, [0x2190]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe920f4, [0x1]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe920f8, [0x4e6e]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe920fc, [0x5]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe92100, [0x8802]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe92104, [0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe92108, [0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe9210c, [0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe92110, [0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe92114, [0x400]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe92118, [0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe9211c, [0]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe92120, [0x4ebbc7b5]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe92124, [0x2e64389]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe92128, [0x4ebbc7b5]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe9212c, [0x4547989]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe92130, [0x4ebbc718]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe92134, [0xbb8908a]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe92138, [0x5]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xbfe9213c, [0]) = 0
+write(2, "{st_mode=S_IFCHR|0620, st_rdev=ma"..., 58) = 58
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0xc0]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0xffffffda]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EBX, [0]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ECX, [0x1000]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EDX, [0x3]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ESI, [0x22]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EDI, [0xffffffff]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EBP, [0]) = 0
+write(2, "mmap2(NULL, 4096, PROT_READ|PROT_"..., 72) = 72
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0xc0]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0xb7826000]) = 0
+write(2, ") = 0xb7826000\n"..., 15)     = 15
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0x4]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0xffffffda]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EBX, [0x1]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ECX, [0xb7826000]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EDX, [0x1]) = 0
+ptrace(PTRACE_PEEKDATA, 4727, 0xb7826000, [0xa]) = 0
+write(2, "write(1, \"\\n\"..., 1"..., 19) = 19
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0x4]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0x1]) = 0
+write(2, ")                    = 1\n"..., 25) = 25
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0x6]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0xffffffda]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EBX, [0x1]) = 0
+write(2, "close(1"..., 7)               = 7
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0x6]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0]) = 0
+write(2, ")                                "..., 37) = 37
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0x5b]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0xffffffda]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EBX, [0xb7826000]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ECX, [0x1000]) = 0
+write(2, "munmap(0xb7826000, 4096"..., 23) = 23
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0x5b]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0]) = 0
+write(2, ")                = 0\n"..., 21) = 21
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0x6]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0xffffffda]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EBX, [0x2]) = 0
+write(2, "close(2"..., 7)               = 7
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0x6]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0]) = 0
+write(2, ")                                "..., 37) = 37
+ptrace(PTRACE_SYSCALL, 4727, 0x1, SIG_0) = 0
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGTRAP}], __WALL, NULL) = 4727
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*ORIG_EAX, [0xfc]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EAX, [0xffffffda]) = 0
+ptrace(PTRACE_PEEKUSER, 4727, 4*EBX, [0]) = 0
+write(2, "exit_group(0)                    "..., 44) = 44
+ptrace(PTRACE_CONT, 4727, 0x1, SIG_0)   = 0
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+wait4(-1, [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], __WALL, NULL) = 4727
+--- SIGCHLD (Child exited) @ 0 (0) ---
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT PIPE TERM], NULL, 8) = 0
+exit_group(0)                           = ?
