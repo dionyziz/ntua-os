@@ -13,9 +13,10 @@
 #include <stdlib.h>
 
 #include "mandel-lib.h"
+#include "pipesem.h"
 
 #define MANDEL_MAX_ITERATION 100000
-#define NCHILDEN 3;
+#define NCHILDREN 1
 
 /***************************
  * Compile-time parameters *
@@ -113,28 +114,47 @@ void compute_and_output_mandel_line(int fd, int line)
 int main(void)
 {
 	int line;
-    int image[y_chars][x_chars];
+    int buffer[x_chars];
     struct pipesem sems[NCHILDREN];
-    int pipes[NCHILDEN][2];
+    int pipes[NCHILDREN][2];
 
 	xstep = (xmax - xmin) / x_chars;
 	ystep = (ymax - ymin) / y_chars;
 
-    int pids[NCHILDEN];
+    int pids[NCHILDREN];
     int i,j;
-    for (i = 0; i < NCHILDEN; i++) {
-        pipesem_init(sems[i]);
+    for (i = 0; i < NCHILDREN; i++) {
+        pipe(pipes[i]);
+        pipesem_init(&sems[i], 0);
         pids[i] = fork();
         if (pids[i] < 0) {
             perror("Failed to fork");
-            return;
+            return 0;
         }
         else if (pids[i] == 0) {
-            for (j = i; j < y_chars; j += NCHILDEN) {
-                compute_mandel_line(j, image[y_chars]);
-                pipesem_signal(sems[i]);
+            close(pipes[i][0]);
+
+            for (j = i; j < y_chars; j += NCHILDREN) {
+                compute_mandel_line(j, buffer);
+                int status;
+                int bytes_written = 0;
+                //printf( "Process %d. Computing line %d\n", i, j );
+                while (bytes_written < x_chars * sizeof(int)) {
+                    status = write(pipes[i][1], (void*) buffer + bytes_written, x_chars * sizeof(int) - bytes_written);
+                    if (status < 0) {
+                        perror("Could not write to pipe");
+                        //TODO Inform your mama
+                        return 0;
+                    }
+                    bytes_written += status;
+                }
+                pipesem_signal(&sems[i]);
             }
-            break;
+            close(pipes[i][1]);
+            return 0;
+        }
+        else {
+            close(pipes[i][1]);
         }
     }
 
@@ -142,8 +162,21 @@ int main(void)
 	 * draw the Mandelbrot Set, one line at a time.
 	 * Output is sent to file descriptor '1', i.e., standard output.
 	 */
+    int status;
+    int bytes_read;
 	for (line = 0; line < y_chars; line++) {
-		compute_and_output_mandel_line(1, line);
+        bytes_read = 0;
+        pipesem_wait(&sems[line % NCHILDREN]);
+        while (bytes_read < x_chars * sizeof(int)) {
+            //printf( "Reading %d bytes\n", x_chars * sizeof(int) - bytes_read);
+            status = read(pipes[line % NCHILDREN][0], (void*) buffer + bytes_read, x_chars * sizeof(int) - bytes_read);
+            if (status < 0) {
+                perror("Could not read from pipe");
+                return 0;
+            }
+            bytes_read += status;
+        }
+        output_mandel_line(1, buffer);
 	}
 
 	reset_xterm_color(1);

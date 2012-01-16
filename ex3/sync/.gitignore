@@ -1,0 +1,5 @@
+*.o
+*.swp
+mandel
+pipesem-test
+tags

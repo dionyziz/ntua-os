@@ -27,8 +27,8 @@ mandel-lib.o: mandel-lib.h mandel-lib.c
 mandel.o: mandel-lib.h mandel.c
 	$(CC) $(CFLAGS) -c -o mandel.o mandel.c
 
-mandel: mandel-lib.o mandel.o
-	$(CC) $(CFLAGS) -o mandel mandel-lib.o mandel.o
+mandel: mandel-lib.o mandel.o pipesem.o
+	$(CC) $(CFLAGS) -o mandel mandel-lib.o mandel.o pipesem.o
 
 ## Procs-shm
 procs-shm.o: proc-common.h procs-shm.c
