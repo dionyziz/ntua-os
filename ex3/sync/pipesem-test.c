@@ -36,7 +36,7 @@ int main(void)
 	struct pipesem sem;
 
 	/* Initialize the semaphore to 0 */
-	pipesem_init(&sem, 0);
+	pipesem_init(&sem, 1);
 
 	/* Create a child */
 	p = fork();
@@ -51,6 +51,7 @@ int main(void)
 
 	/* Father */
 	printf("Parent: waiting on semaphore\n");
+	pipesem_wait(&sem);
 	pipesem_wait(&sem);
 	printf("Parent: signaled, program should terminate.\n");
 

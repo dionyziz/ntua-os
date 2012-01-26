@@ -31,11 +31,17 @@ mandel: mandel-lib.o mandel.o pipesem.o
 	$(CC) $(CFLAGS) -o mandel mandel-lib.o mandel.o pipesem.o
 
 ## Procs-shm
+ask3-3.o: proc-common.h ask3-3.c
+	$(CC) $(CFLAGS) -c -o ask3-3.o ask3-3.c
+
 procs-shm.o: proc-common.h procs-shm.c
 	$(CC) $(CFLAGS) -c -o procs-shm.o procs-shm.c
 
 procs-shm: proc-common.o procs-shm.o
 	$(CC) $(CFLAGS) -o procs-shm proc-common.o procs-shm.o
+
+ask3-3: proc-common.o ask3-3.o pipesem.o
+	$(CC) $(CFLAGS) -o ask3-3 proc-common.o ask3-3.o pipesem.o
 
 clean:
 	rm -f *.o pipesem-test mandel procs-shm

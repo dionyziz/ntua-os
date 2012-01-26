@@ -11,10 +11,11 @@
 
 void pipesem_init(struct pipesem *sem, int val)
 {
+    int i;
     int f[ 2 ];
     int status;
 
-    status = pipe( f );
+    status = pipe(f);
     if (status < 0) {
         perror("Could not create semaphore");
         return;
@@ -22,6 +23,10 @@ void pipesem_init(struct pipesem *sem, int val)
 
     sem->rfd = f[ 0 ];
     sem->wfd = f[ 1 ];
+
+    for (i = 0; i < val; ++i) {
+        pipesem_signal(sem);
+    }
 }
 
 void pipesem_wait(struct pipesem *sem)
