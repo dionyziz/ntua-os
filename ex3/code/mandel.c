@@ -34,7 +34,7 @@ int x_chars = 90;
 */
 double xmin = -1.8, xmax = 1.0;
 double ymin = -1.0, ymax = 1.0;
-	
+    
 /*
  * Every character in the final output is
  * xstep x ystep units wide on the complex plane.
@@ -48,29 +48,29 @@ double ystep;
  */
 void compute_mandel_line(int line, int color_val[])
 {
-	/*
-	 * x and y traverse the complex plane.
-	 */
-	double x, y;
+    /*
+     * x and y traverse the complex plane.
+     */
+    double x, y;
 
-	int n;
-	int val;
+    int n;
+    int val;
 
-	/* Find out the y value corresponding to this line */
-	y = ymax - ystep * line;
+    /* Find out the y value corresponding to this line */
+    y = ymax - ystep * line;
 
-	/* and iterate for all points on this line */
-	for (x = xmin, n = 0; x <= xmax; x+= xstep, n++) {
+    /* and iterate for all points on this line */
+    for (x = xmin, n = 0; x <= xmax; x+= xstep, n++) {
 
-		/* Compute the point's color value */
-		val = mandel_iterations_at_point(x, y, MANDEL_MAX_ITERATION);
-		if (val > 255)
-			val = 255;
+        /* Compute the point's color value */
+        val = mandel_iterations_at_point(x, y, MANDEL_MAX_ITERATION);
+        if (val > 255)
+            val = 255;
 
-		/* And store it in the color_val[] array */
-		val = xterm_color(val);
-		color_val[n] = val;
-	}
+        /* And store it in the color_val[] array */
+        val = xterm_color(val);
+        color_val[n] = val;
+    }
 }
 
 /*
@@ -79,47 +79,47 @@ void compute_mandel_line(int line, int color_val[])
  */
 void output_mandel_line(int fd, int color_val[])
 {
-	int i;
-	
-	char point ='@';
-	char newline='\n';
+    int i;
+    
+    char point ='@';
+    char newline='\n';
 
-	for (i = 0; i < x_chars; i++) {
-		/* Set the current color, then output the point */
-		set_xterm_color(fd, color_val[i]);
-		if (write(fd, &point, 1) != 1) {
-			perror("compute_and_output_mandel_line: write point");
-			exit(1);
-		}
-	}
+    for (i = 0; i < x_chars; i++) {
+        /* Set the current color, then output the point */
+        set_xterm_color(fd, color_val[i]);
+        if (write(fd, &point, 1) != 1) {
+            perror("compute_and_output_mandel_line: write point");
+            exit(1);
+        }
+    }
 
-	/* Now that the line is done, output a newline character */
-	if (write(fd, &newline, 1) != 1) {
-		perror("compute_and_output_mandel_line: write newline");
-		exit(1);
-	}
+    /* Now that the line is done, output a newline character */
+    if (write(fd, &newline, 1) != 1) {
+        perror("compute_and_output_mandel_line: write newline");
+        exit(1);
+    }
 }
 
 void compute_and_output_mandel_line(int fd, int line)
 {
-	/*
-	 * A temporary array, used to hold color values for the line being drawn
-	 */
-	int color_val[x_chars];
+    /*
+     * A temporary array, used to hold color values for the line being drawn
+     */
+    int color_val[x_chars];
 
-	compute_mandel_line(line, color_val);
-	output_mandel_line(fd, color_val);
+    compute_mandel_line(line, color_val);
+    output_mandel_line(fd, color_val);
 }
 
 int main(void)
 {
-	int line;
+    int line;
     int buffer[x_chars];
     struct pipesem sems[NCHILDREN];
     int pipes[NCHILDREN][2];
 
-	xstep = (xmax - xmin) / x_chars;
-	ystep = (ymax - ymin) / y_chars;
+    xstep = (xmax - xmin) / x_chars;
+    ystep = (ymax - ymin) / y_chars;
 
     int pids[NCHILDREN];
     int i,j;
@@ -158,13 +158,13 @@ int main(void)
         }
     }
 
-	/*
-	 * draw the Mandelbrot Set, one line at a time.
-	 * Output is sent to file descriptor '1', i.e., standard output.
-	 */
+    /*
+     * draw the Mandelbrot Set, one line at a time.
+     * Output is sent to file descriptor '1', i.e., standard output.
+     */
     int status;
     int bytes_read;
-	for (line = 0; line < y_chars; line++) {
+    for (line = 0; line < y_chars; line++) {
         bytes_read = 0;
         pipesem_wait(&sems[line % NCHILDREN]);
         while (bytes_read < x_chars * sizeof(int)) {
@@ -177,8 +177,8 @@ int main(void)
             bytes_read += status;
         }
         output_mandel_line(1, buffer);
-	}
+    }
 
-	reset_xterm_color(1);
-	return 0;
+    reset_xterm_color(1);
+    return 0;
 }

@@ -54,7 +54,7 @@ void fork_procs(struct tree_node node, int out)
     int a, b;
     int result;
 
-	change_pname(node.name);
+    change_pname(node.name);
     printf("%s: Hello! I have %i children.\n", node.name, node.nr_children);
     if (node.nr_children == 0) {
         do_write(out, atoi(node.name));
@@ -90,8 +90,8 @@ void fork_procs(struct tree_node node, int out)
     }
     do_write(out, result);
 
-	printf("%s: Goodbye...\n", node.name);
-	exit(0);
+    printf("%s: Goodbye...\n", node.name);
+    exit(0);
 }
 
 /*
@@ -101,45 +101,45 @@ void fork_procs(struct tree_node node, int out)
  */
 int main(int argc, char** argv)
 {
-	pid_t pid;
-	int status;
-	struct tree_node *root;
+    pid_t pid;
+    int status;
+    struct tree_node *root;
     int f[2];
     int result;
 
-	if (argc != 2) {
-		fprintf(stderr, "Usage: %s <input_tree_file>\n\n", argv[0]);
-		exit(1);
-	}
+    if (argc != 2) {
+        fprintf(stderr, "Usage: %s <input_tree_file>\n\n", argv[0]);
+        exit(1);
+    }
 
-	root = get_tree_from_file(argv[1]);
+    root = get_tree_from_file(argv[1]);
     printf("Constructing the following process tree:\n");
-	print_tree(root);
+    print_tree(root);
 
-	/* Fork root of process tree */
+    /* Fork root of process tree */
     pipe(f);
-	pid = fork();
-	if (pid < 0) {
-		perror("main: fork");
-		exit(1);
-	}
-	if (pid == 0) {
-		/* Child */
+    pid = fork();
+    if (pid < 0) {
+        perror("main: fork");
+        exit(1);
+    }
+    if (pid == 0) {
+        /* Child */
         close(f[0]);
-		fork_procs(*root, f[1]);
-		exit(1);
-	}
+        fork_procs(*root, f[1]);
+        exit(1);
+    }
     close(f[1]);
     do_read(f[0], &result);
 
     printf("Final result: %i\n", result);
 
-	/* Print the process tree root at pid */
-	// show_pstree(pid);
+    /* Print the process tree root at pid */
+    // show_pstree(pid);
 
-	/* Wait for the root of the process tree to terminate */
-	pid = wait(&status);
-	explain_wait_status(pid, status);
+    /* Wait for the root of the process tree to terminate */
+    pid = wait(&status);
+    explain_wait_status(pid, status);
 
-	return 0;
+    return 0;
 }

@@ -4,9 +4,6 @@
 
 #include <unistd.h>
 #include <stdio.h>
-
-/* The functions are intentionally left blank :-) */
-
 #include "pipesem.h"
 
 void pipesem_init(struct pipesem *sem, int val)
