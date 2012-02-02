@@ -1,0 +1,9 @@
+*.o
+hello
+prog
+scheduler
+scheduler-shell
+scheduler-solution
+shell
+strace-test
+execve-example
