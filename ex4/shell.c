@@ -157,6 +157,7 @@ int main(int argc, char *argv[])
 			wfd, rfd);
 		exit(1);
 	}
+    fprintf(stderr, "Shell: Welcome. My wfd is %i and my rfw is %i.\n", wfd, rfd);
 
 	/*
 	 * Forever: show the prompt, read a command line, then process it.

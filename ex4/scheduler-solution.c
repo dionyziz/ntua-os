@@ -30,7 +30,7 @@ static void
 sigalrm_handler(int signum)
 {
     fprintf(stderr, "SIGALRM Fired.\n");
-    fprintf(stderr, "Stopping process %i with id = %i.\n", current, childid[current]);
+    // fprintf(stderr, "Stopping process %i with id = %i.\n", current, childid[current]);
     alarm(SCHED_TQ_SEC);
     kill(childid[current], SIGSTOP);
     // next();
@@ -50,14 +50,14 @@ sigchld_handler(int signum)
 	pid_t p;
 	int status, next;
 
-    fprintf(stderr, "SIGCHLD called.\n");
+    // fprintf(stderr, "SIGCHLD called.\n");
 
     /* Wait for any child, also get status for stopped children */
     p = waitpid(-1, &status, WUNTRACED|WCONTINUED);
     // fprintf(stderr, "SIGHCLD: Expected processid %i to stop; actually %i stopped.\n", childid[current], ( int )p );
     assert(( int )p == childid[current]);
 
-    fprintf(stderr, "SIGCHILD Fired for process %i with id = %i and signum = %i.\n", current, childid[current], signum);
+    // fprintf(stderr, "SIGCHILD Fired for process %i with id = %i and signum = %i.\n", current, childid[current], signum);
     next = 0;
     if (WIFEXITED(status)) {
         // child died
@@ -67,7 +67,7 @@ sigchld_handler(int signum)
     }
     if (WIFSTOPPED(status)) {
         // child stopped by scheduler
-        fprintf(stderr, "Child %i stopped; has processid %i\n", current, childid[current]);
+        // fprintf(stderr, "Child %i stopped; has processid %i\n", current, childid[current]);
         next = 1;
     }
     if (next == 0) {
@@ -80,7 +80,7 @@ sigchld_handler(int signum)
         ++count;
     } while (!alive[current] && count <= nproc);
     if (count == nproc + 1) {
-        fprintf(stderr, "All processes are died. Exiting.\n");
+        // fprintf(stderr, "All processes are died. Exiting.\n");
         // everyone has died
         exit(0);
     }
@@ -100,7 +100,7 @@ install_signal_handlers(void)
 	sigset_t sigset;
 	struct sigaction sa;
 
-    fprintf(stderr, "Installing signal handlers.\n");
+    // fprintf(stderr, "Installing signal handlers.\n");
 
 	sa.sa_handler = sigchld_handler;
 	sa.sa_flags = SA_RESTART;
@@ -128,16 +128,21 @@ install_signal_handlers(void)
 		perror("signal: sigpipe");
 		exit(1);
 	}
-    fprintf(stderr, "Signal handlers installed successfully.\n");
+    // fprintf(stderr, "Signal handlers installed successfully.\n");
 }
 
 int main(int argc, char *argv[])
 {
 	int i, child;
     char *childargs[] = { NULL }, *environment[] = { NULL };
+    int rfd[2], wfd[2];
+    char* pipes[2];
+    int shell;
 
-    alive = ( int* )malloc((argc - 1) * sizeof(int));
-    childid = ( int* )malloc((argc - 1) * sizeof(int));
+    alive = ( int* )malloc(argc * sizeof(int));
+    childid = ( int* )malloc(argc * sizeof(int));
+    pipes[ 0 ] = ( char* )malloc( 10 );
+    pipes[ 1 ] = ( char* )malloc( 10 );
 
 	/*
 	 * For each of argv[1] to argv[argc - 1],
@@ -145,36 +150,56 @@ int main(int argc, char *argv[])
 	 */
 
     for (i = 0; i < argc - 1; ++i) {
-        fprintf(stderr, "Forking scheduler child %i.\n", i);
+        // fprintf(stderr, "Forking scheduler child %i.\n", i);
         child = fork();
         if (child == 0) {
-            fprintf(stderr, "Scheduler child %i created.\n", i);
+            // fprintf(stderr, "Scheduler child %i created.\n", i);
             raise(SIGSTOP);
             execve(argv[i + 1], childargs, environment);
-            fprintf(stderr, "Scheduler child: Unreachable point.\n");
+            // fprintf(stderr, "Scheduler child: Unreachable point.\n");
             return 0;
         }
         else {
             alive[i] = 1;
             childid[i] = child;
-            fprintf(stderr, "Forked child with processid = %i.\n", child);
+            // fprintf(stderr, "Forked child with processid = %i.\n", child);
         }
     }
 
-	nproc = argc - 1; /* number of proccesses goes here */
+    // pipe(rfd);
+    // pipe(wfd);
+    shell = fork();
+    if (shell == 0) {
+        /*
+        close(rfd[0]);
+        close(wfd[1]);
+        raise(SIGSTOP);
+        sprintf(pipes[0], "%i", rfd[1]);
+        sprintf(pipes[1], "%i", wfd[0]);
+        */
+        execve("hello", childargs, environment);
+    }
+    else {
+        // close(rfd[1]);
+        // close(wfd[0]);
+        alive[i] = 1;
+        childid[i] = shell;
+    }
 
-    fprintf(stderr, "Waiting for forks of %i children to complete.\n", nproc);
+	nproc = argc; /* number of proccesses goes here */
+
+    // fprintf(stderr, "Waiting for forks of %i children to complete.\n", nproc);
 
 	/* Wait for all children to raise SIGSTOP before exec()ing. */
 	wait_for_ready_children(nproc);
 
-    fprintf(stderr, "All %i children forked successully. Ready to schedule.\n", nproc);
+    // fprintf(stderr, "All %i children forked successully. Ready to schedule.\n", nproc);
 
 	/* Install SIGALRM and SIGCHLD handlers. */
 	install_signal_handlers();
 
 	if (nproc == 0) {
-		fprintf(stderr, "Scheduler: No tasks. Exiting...\n");
+		// fprintf(stderr, "Scheduler: No tasks. Exiting...\n");
 		exit(1);
 	}
 
