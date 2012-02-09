@@ -3,8 +3,10 @@
 
 int main() {
     while (1) {
-        sleep(1);
-        printf( "Hello, world!\n" );
+        printf( "Hello, world 4!\n" );
+        sleep(3);
+        printf( "Aaaaargh!\n" );
+        return 0;
     }
     return 0;
 }

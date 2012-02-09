@@ -1,0 +1,74 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+CC	Makefile	/^CC = gcc$/;"	m
+CFLAGS	Makefile	/^CFLAGS = -Wall -O2 -g$/;"	m
+DELAY	prog.c	8;"	d	file:
+EXEC_TASK_NAME_SZ	request.h	16;"	d
+NMSG	prog.c	7;"	d	file:
+PROC_COMMON_H	proc-common.h	2;"	d
+REQUEST_H_	request.h	2;"	d
+REQ_EXEC_TASK	request.h	/^	REQ_EXEC_TASK,    \/* execute ->exec_task_arg with priority ->prio_arg *\/$/;"	e	enum:request_enum
+REQ_HIGH_TASK	request.h	/^	REQ_HIGH_TASK,    \/* set ->task_arg to be of high priority *\/$/;"	e	enum:request_enum
+REQ_KILL_TASK	request.h	/^	REQ_KILL_TASK,    \/* kill ->task_arg task *\/$/;"	e	enum:request_enum
+REQ_LOW_TASK	request.h	/^	REQ_LOW_TASK,     \/* set ->task_arg to be of low priority *\/$/;"	e	enum:request_enum
+REQ_PRINT_TASKS	request.h	/^	REQ_PRINT_TASKS,  \/* print tasks *\/$/;"	e	enum:request_enum
+SCHED_TQ_SEC	scheduler-shell.c	16;"	d	file:
+SCHED_TQ_SEC	scheduler-solution.c	16;"	d	file:
+SCHED_TQ_SEC	scheduler.c	16;"	d	file:
+SHELL_CMDLINE_SZ	shell.c	12;"	d	file:
+SHELL_EXECUTABLE_NAME	scheduler-shell.c	18;"	d	file:
+STOP_SIGNAL	strace-test.c	20;"	d	file:
+TASK_NAME_SZ	scheduler-shell.c	17;"	d	file:
+TASK_NAME_SZ	scheduler-solution.c	17;"	d	file:
+TASK_NAME_SZ	scheduler.c	17;"	d	file:
+alive	scheduler-solution.c	/^int *childid, *alive, current = 0, nproc;$/;"	v
+change_pname	proc-common.c	/^change_pname(const char *new_name)$/;"	f
+childid	scheduler-solution.c	/^int *childid, *alive, current = 0, nproc;$/;"	v
+compute	proc-common.c	/^void compute(int count)$/;"	f
+create_shared_memory_area	proc-common.c	/^void *create_shared_memory_area(unsigned int numbytes)$/;"	f
+current	scheduler-solution.c	/^int *childid, *alive, current = 0, nproc;$/;"	v
+do_shell	scheduler-shell.c	/^do_shell(char *executable, int wfd, int rfd)$/;"	f	file:
+exec_task_arg	request.h	/^	char exec_task_arg[EXEC_TASK_NAME_SZ];$/;"	m	struct:request_struct
+explain_wait_status	proc-common.c	/^explain_wait_status(pid_t pid, int status)$/;"	f
+get_cmdline	shell.c	/^void get_cmdline(FILE *fp, char *buf, int bufsz)$/;"	f
+help	shell.c	/^void help(void)$/;"	f
+install_signal_handlers	scheduler-shell.c	/^install_signal_handlers(void)$/;"	f	file:
+install_signal_handlers	scheduler-solution.c	/^install_signal_handlers(void)$/;"	f	file:
+install_signal_handlers	scheduler.c	/^install_signal_handlers(void)$/;"	f	file:
+issue_request	shell.c	/^void issue_request(int wfd, int rfd, struct request_struct *rq)$/;"	f
+main	execve-example.c	/^int main(int argc, char *argv[])$/;"	f
+main	hello.c	/^int main() {$/;"	f
+main	prog.c	/^int main(int argc, char *argv[])$/;"	f
+main	scheduler-shell.c	/^int main(int argc, char *argv[])$/;"	f
+main	scheduler-solution.c	/^int main(int argc, char *argv[])$/;"	f
+main	scheduler.c	/^int main(int argc, char *argv[])$/;"	f
+main	shell.c	/^int main(int argc, char *argv[])$/;"	f
+main	strace-test.c	/^int main(int argc, char *argv[])$/;"	f
+next	scheduler-solution.c	/^int next() {$/;"	f
+nproc	scheduler-solution.c	/^int *childid, *alive, current = 0, nproc;$/;"	v
+process_cmdline	shell.c	/^void process_cmdline(char *cmdline, int wfd, int rfd)$/;"	f
+process_request	scheduler-shell.c	/^process_request(struct request_struct *rq)$/;"	f	file:
+request_enum	request.h	/^enum request_enum {$/;"	g
+request_no	request.h	/^	enum request_enum request_no;$/;"	m	struct:request_struct	typeref:enum:request_struct::request_enum
+request_struct	request.h	/^struct request_struct {$/;"	s
+sched_create_shell	scheduler-shell.c	/^sched_create_shell(char *executable, int *request_fd, int *return_fd)$/;"	f	file:
+sched_create_task	scheduler-shell.c	/^sched_create_task(char *executable)$/;"	f	file:
+sched_kill_task_by_id	scheduler-shell.c	/^sched_kill_task_by_id(int id)$/;"	f	file:
+sched_print_tasks	scheduler-shell.c	/^sched_print_tasks(void)$/;"	f	file:
+shell_request_loop	scheduler-shell.c	/^shell_request_loop(int request_fd, int return_fd)$/;"	f	file:
+show_pstree	proc-common.c	/^show_pstree(pid_t p)$/;"	f
+sigalrm_handler	scheduler-shell.c	/^sigalrm_handler(int signum)$/;"	f	file:
+sigalrm_handler	scheduler-solution.c	/^sigalrm_handler(int signum)$/;"	f	file:
+sigalrm_handler	scheduler.c	/^sigalrm_handler(int signum)$/;"	f	file:
+sigchld_handler	scheduler-shell.c	/^sigchld_handler(int signum)$/;"	f	file:
+sigchld_handler	scheduler-solution.c	/^sigchld_handler(int signum)$/;"	f	file:
+sigchld_handler	scheduler.c	/^sigchld_handler(int signum)$/;"	f	file:
+signals_disable	scheduler-shell.c	/^signals_disable(void)$/;"	f	file:
+signals_enable	scheduler-shell.c	/^signals_enable(void)$/;"	f	file:
+task_arg	request.h	/^	int task_arg;$/;"	m	struct:request_struct
+wait_for_ready_children	proc-common.c	/^wait_for_ready_children(int cnt)$/;"	f
+wait_forever	proc-common.c	/^wait_forever(void)$/;"	f

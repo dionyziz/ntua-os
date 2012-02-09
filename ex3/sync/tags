@@ -1,0 +1,64 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+CC	Makefile	/^CC = gcc$/;"	m
+CFLAGS	Makefile	/^CFLAGS = -Wall -O2$/;"	m
+MANDEL_LIB_H__	mandel-lib.h	10;"	d
+MANDEL_MAX_ITERATION	mandel.c	17;"	d	file:
+NCHILDEN	mandel.c	18;"	d	file:
+PIPESEM_H__	pipesem.h	12;"	d
+PROC_COMMON_H	proc-common.h	2;"	d
+basic16	mandel-lib.c	/^static const unsigned char basic16[16][3] =$/;"	v	file:
+blue	mandel-lib.c	/^static struct { double red; double green; double blue; } mandel256[] = {$/;"	m	struct:__anon1	file:
+change_pname	proc-common.c	/^change_pname(const char *new_name)$/;"	f
+child	pipesem-test.c	/^void child(struct pipesem *sem)$/;"	f
+colortable	mandel-lib.c	/^static unsigned char colortable[254][3];$/;"	v	file:
+compute_and_output_mandel_line	mandel.c	/^void compute_and_output_mandel_line(int fd, int line)$/;"	f
+compute_mandel_line	mandel.c	/^void compute_mandel_line(int line, int color_val[])$/;"	f
+create_shared_memory_area	proc-common.c	/^void *create_shared_memory_area(unsigned int numbytes)$/;"	f
+explain_wait_status	proc-common.c	/^explain_wait_status(pid_t pid, int status)$/;"	f
+green	mandel-lib.c	/^static struct { double red; double green; double blue; } mandel256[] = {$/;"	m	struct:__anon1	file:
+initialized	mandel-lib.c	/^static int initialized=0;$/;"	v	file:
+insist_write	mandel-lib.c	/^ssize_t insist_write(int fd, const char *buf, size_t count)$/;"	f
+main	mandel.c	/^int main(void)$/;"	f
+main	pipesem-test.c	/^int main(void)$/;"	f
+main	procs-shm.c	/^int main(void)$/;"	f
+main	rand-fork.c	/^int main(int argc, const char *argv[])$/;"	f
+maketable	mandel-lib.c	/^static void maketable()$/;"	f	file:
+mandel256	mandel-lib.c	/^static struct { double red; double green; double blue; } mandel256[] = {$/;"	v	typeref:struct:__anon1	file:
+mandel_iterations_at_point	mandel-lib.c	/^int mandel_iterations_at_point(double x, double y, int max)$/;"	f
+output_mandel_line	mandel.c	/^void output_mandel_line(int fd, int color_val[])$/;"	f
+pipesem	pipesem.h	/^struct pipesem {$/;"	s
+pipesem_destroy	pipesem.c	/^void pipesem_destroy(struct pipesem *sem)$/;"	f
+pipesem_init	pipesem.c	/^void pipesem_init(struct pipesem *sem, int val)$/;"	f
+pipesem_signal	pipesem.c	/^void pipesem_signal(struct pipesem *sem)$/;"	f
+pipesem_wait	pipesem.c	/^void pipesem_wait(struct pipesem *sem)$/;"	f
+proc_A	procs-shm.c	/^void proc_A(void)$/;"	f
+proc_B	procs-shm.c	/^void proc_B(void)$/;"	f
+proc_C	procs-shm.c	/^void proc_C(void)$/;"	f
+proc_fn_t	procs-shm.c	/^typedef void proc_fn_t(void);$/;"	t	file:
+proc_funcs	procs-shm.c	/^static proc_fn_t *proc_funcs[] = {proc_A, proc_B, proc_C, NULL};$/;"	v	file:
+red	mandel-lib.c	/^static struct { double red; double green; double blue; } mandel256[] = {$/;"	m	struct:__anon1	file:
+reset_xterm_color	mandel-lib.c	/^void reset_xterm_color(int fd)$/;"	f
+rfd	pipesem.h	/^	int rfd;$/;"	m	struct:pipesem
+rgb2xterm	mandel-lib.c	/^static unsigned char rgb2xterm(unsigned char* rgb)$/;"	f	file:
+set_xterm_color	mandel-lib.c	/^void set_xterm_color(int fd, unsigned char color)$/;"	f
+shared_memory	procs-shm.c	/^int *shared_memory;$/;"	v
+show_pstree	proc-common.c	/^show_pstree(pid_t p)$/;"	f
+valuerange	mandel-lib.c	/^static const unsigned char valuerange[] = { 0x00, 0x5F, 0x87, 0xAF, 0xD7, 0xFF };$/;"	v	file:
+wait_for_ready_children	proc-common.c	/^wait_for_ready_children(int cnt)$/;"	f
+wait_forever	proc-common.c	/^wait_forever(void)$/;"	f
+wfd	pipesem.h	/^	int wfd;$/;"	m	struct:pipesem
+x_chars	mandel.c	/^int x_chars = 90;$/;"	v
+xmax	mandel.c	/^double xmin = -1.8, xmax = 1.0;$/;"	v
+xmin	mandel.c	/^double xmin = -1.8, xmax = 1.0;$/;"	v
+xstep	mandel.c	/^double xstep;$/;"	v
+xterm2rgb	mandel-lib.c	/^static void xterm2rgb(unsigned char color, unsigned char* rgb)$/;"	f	file:
+xterm_color	mandel-lib.c	/^unsigned char xterm_color(int color_val)$/;"	f
+y_chars	mandel.c	/^int y_chars = 50;$/;"	v
+ymax	mandel.c	/^double ymin = -1.0, ymax = 1.0;$/;"	v
+ymin	mandel.c	/^double ymin = -1.0, ymax = 1.0;$/;"	v
+ystep	mandel.c	/^double ystep;$/;"	v

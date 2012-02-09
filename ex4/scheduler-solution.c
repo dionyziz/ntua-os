@@ -18,6 +18,9 @@
 
 int *childid, *alive, current = 0, nproc;
 
+static void
+sigchld_handler(int signum);
+
 /* SIGALRM handler: Gets called whenever an alarm goes off.
  * The time quantum of the currently executing process has expired,
  * so send it a SIGSTOP. The SIGCHLD handler will take care of
@@ -28,8 +31,9 @@ sigalrm_handler(int signum)
 {
     fprintf(stderr, "SIGALRM Fired.\n");
     fprintf(stderr, "Stopping process %i with id = %i.\n", current, childid[current]);
+    alarm(SCHED_TQ_SEC);
     kill(childid[current], SIGSTOP);
-    next();
+    // next();
 	// assert(0 && "Please fill me!");
 }
 
@@ -43,10 +47,45 @@ sigalrm_handler(int signum)
 static void
 sigchld_handler(int signum)
 {
-    // fprintf(stderr, "SIGCHILD Fired.\n");
-    // fprintf(stderr, "Process %i with id = %i terminated.\n", current, childid[current]);
-    // kill(current, SIGSTOP);
-    // alive[current] = 0;
+	pid_t p;
+	int status, next;
+
+    fprintf(stderr, "SIGCHLD called.\n");
+
+    /* Wait for any child, also get status for stopped children */
+    p = waitpid(-1, &status, WUNTRACED|WCONTINUED);
+    // fprintf(stderr, "SIGHCLD: Expected processid %i to stop; actually %i stopped.\n", childid[current], ( int )p );
+    assert(( int )p == childid[current]);
+
+    fprintf(stderr, "SIGCHILD Fired for process %i with id = %i and signum = %i.\n", current, childid[current], signum);
+    next = 0;
+    if (WIFEXITED(status)) {
+        // child died
+        fprintf(stderr, "Child %i died; had processid %i\n", current, childid[current]);
+        alive[current] = 0;
+        next = 1;
+    }
+    if (WIFSTOPPED(status)) {
+        // child stopped by scheduler
+        fprintf(stderr, "Child %i stopped; has processid %i\n", current, childid[current]);
+        next = 1;
+    }
+    if (next == 0) {
+        return;
+    }
+    fprintf(stderr, "Round robin scheduler: Waking up next process.\n");
+    int count = 0;
+    do {
+        current = (current + 1) % nproc;
+        ++count;
+    } while (!alive[current] && count <= nproc);
+    if (count == nproc + 1) {
+        fprintf(stderr, "All processes are died. Exiting.\n");
+        // everyone has died
+        exit(0);
+    }
+    fprintf(stderr, "Waking up %i-th child with processid = %i.\n", current, childid[current]);
+    kill(childid[current], SIGCONT);
     // next();
 	// assert(0 && "Please fill me!");
 }
@@ -92,18 +131,9 @@ install_signal_handlers(void)
     fprintf(stderr, "Signal handlers installed successfully.\n");
 }
 
-int next() {
-    fprintf(stderr, "Round robin scheduler: Waking up next process.\n");
-    current = (current + 1) % nproc;
-    fprintf(stderr, "Waking up %i-th child with processid = %i.\n", current, childid[current]);
-    kill(childid[current], SIGCONT);
-
-    return childid[current];
-}
-
 int main(int argc, char *argv[])
 {
-	int i, child, nextsuccessful;
+	int i, child;
     char *childargs[] = { NULL }, *environment[] = { NULL };
 
     alive = ( int* )malloc((argc - 1) * sizeof(int));
@@ -114,19 +144,20 @@ int main(int argc, char *argv[])
 	 * create a new child process, add it to the process list.
 	 */
 
-    for (i = 1; i < argc; ++i) {
+    for (i = 0; i < argc - 1; ++i) {
         fprintf(stderr, "Forking scheduler child %i.\n", i);
         child = fork();
         if (child == 0) {
             fprintf(stderr, "Scheduler child %i created.\n", i);
             raise(SIGSTOP);
-            execve(argv[i], childargs, environment);
+            execve(argv[i + 1], childargs, environment);
             fprintf(stderr, "Scheduler child: Unreachable point.\n");
             return 0;
         }
         else {
             alive[i] = 1;
             childid[i] = child;
+            fprintf(stderr, "Forked child with processid = %i.\n", child);
         }
     }
 
@@ -147,12 +178,11 @@ int main(int argc, char *argv[])
 		exit(1);
 	}
 
+    alarm(SCHED_TQ_SEC);
+
+    // start first process in the queue
     current = 0;
-
-    nextsuccessful = next();
-    assert(nextsuccessful);
-
-    alarm(4);
+    kill(childid[current], SIGCONT);
 
 	/* loop forever  until we exit from inside a signal handler. */
 	while (pause())
