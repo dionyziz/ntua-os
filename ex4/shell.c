@@ -152,6 +152,7 @@ int main(int argc, char *argv[])
 
 	wfd = atoi(argv[1]);
 	rfd = atoi(argv[2]);
+    printf("File descriptors actually passed to shell: %i %i.\n", wfd, rfd);
 	if (!wfd || !rfd) {
 		fprintf(stderr, "Shell: descriptors must be non-zero: wfd = %d, rfd = %d\n",
 			wfd, rfd);

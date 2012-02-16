@@ -8,7 +8,7 @@ CC = gcc
 #CFLAGS = -Wall -g
 CFLAGS = -Wall -O2 -g
 
-all: scheduler scheduler-solution scheduler-shell shell prog execve-example strace-test
+all: scheduler scheduler-solution scheduler-shell scheduler-shell-solution shell prog execve-example strace-test
 
 scheduler: scheduler.o proc-common.o
 	$(CC) -o scheduler scheduler.o proc-common.o
@@ -18,6 +18,9 @@ scheduler-solution: scheduler-solution.o proc-common.o
 
 scheduler-shell: scheduler-shell.o proc-common.o
 	$(CC) -o scheduler-shell scheduler-shell.o proc-common.o
+
+scheduler-shell-solution: scheduler-shell-solution.o proc-common.o
+	$(CC) -o scheduler-shell-solution scheduler-shell-solution.o proc-common.o
 
 shell: shell.o proc-common.o
 	$(CC) -o shell shell.o proc-common.o
@@ -45,6 +48,9 @@ scheduler-solution.o: scheduler-solution.c proc-common.h request.h
 
 scheduler-shell.o: scheduler-shell.c proc-common.h request.h
 	$(CC) $(CFLAGS) -o scheduler-shell.o -c scheduler-shell.c
+
+scheduler-shell-solution.o: scheduler-shell-solution.c proc-common.h request.h
+	$(CC) $(CFLAGS) -o scheduler-shell-solution.o -c scheduler-shell-solution.c
 
 prog.o: prog.c
 	$(CC) $(CFLAGS) -o prog.o -c prog.c

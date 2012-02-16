@@ -29,7 +29,7 @@ sigchld_handler(int signum);
 static void
 sigalrm_handler(int signum)
 {
-    fprintf(stderr, "SIGALRM Fired.\n");
+    // fprintf(stderr, "SIGALRM Fired.\n");
     // fprintf(stderr, "Stopping process %i with id = %i.\n", current, childid[current]);
     alarm(SCHED_TQ_SEC);
     kill(childid[current], SIGSTOP);
@@ -136,13 +136,14 @@ int main(int argc, char *argv[])
 	int i, child;
     char *childargs[] = { NULL }, *environment[] = { NULL };
     int rfd[2], wfd[2];
-    char* pipes[2];
+    char* pipes[ 3 ];
     int shell;
 
     alive = ( int* )malloc(argc * sizeof(int));
     childid = ( int* )malloc(argc * sizeof(int));
-    pipes[ 0 ] = ( char* )malloc( 10 );
-    pipes[ 1 ] = ( char* )malloc( 10 );
+    for (i = 0; i < 4; ++i) {
+        pipes[ i ] = ( char* )malloc( 10 );
+    }
 
 	/*
 	 * For each of argv[1] to argv[argc - 1],
@@ -150,38 +151,52 @@ int main(int argc, char *argv[])
 	 */
 
     for (i = 0; i < argc - 1; ++i) {
-        // fprintf(stderr, "Forking scheduler child %i.\n", i);
         child = fork();
         if (child == 0) {
             // fprintf(stderr, "Scheduler child %i created.\n", i);
             raise(SIGSTOP);
             execve(argv[i + 1], childargs, environment);
-            // fprintf(stderr, "Scheduler child: Unreachable point.\n");
-            return 0;
+            fprintf(stderr, "Scheduler child: Unreachable point.\n");
+            return 1;
         }
         else {
+            fprintf(stderr, "Forked scheduler child %i (%s): PID = %i.\n", i, argv[i + 1], child);
             alive[i] = 1;
             childid[i] = child;
             // fprintf(stderr, "Forked child with processid = %i.\n", child);
         }
     }
 
-    // pipe(rfd);
-    // pipe(wfd);
+    pipe(rfd);
+    pipe(wfd);
+    // fork the shell
+    // fprintf(stderr, "Forking the shell...\n");
     shell = fork();
+    if (shell < 0) {
+        perror("Failed to fork shell");
+    }
     if (shell == 0) {
-        /*
+        // fprintf(stderr, "Forked the shell.\n");
         close(rfd[0]);
         close(wfd[1]);
         raise(SIGSTOP);
-        sprintf(pipes[0], "%i", rfd[1]);
-        sprintf(pipes[1], "%i", wfd[0]);
-        */
-        execve("hello", childargs, environment);
+        // fprintf(stderr, "Preparing shell pipes.\n");
+        pipes[0] = "shell";
+        sprintf(pipes[1], "%i", rfd[1]);
+        // fprintf(stderr, "First pipe ready.\n");
+        sprintf(pipes[2], "%i", wfd[0]);
+        // fprintf(stderr, "Second pipe ready.\n");
+        pipes[3] = NULL;
+        // fprintf(stderr, "File descriptors that should be passed to shell: %i %i.\n", rfd[1], wfd[0]);
+        // fprintf(stderr, "File descriptors passed to shell: %s %s.\n", pipes[1], pipes[2]);
+        // fprintf(stderr, "execve'ing shell...\n");
+        execve("shell", pipes, environment);
+        fprintf(stderr, "Unreachable point!\n");
+        return 1;
     }
     else {
-        // close(rfd[1]);
-        // close(wfd[0]);
+        close(rfd[1]);
+        close(wfd[0]);
         alive[i] = 1;
         childid[i] = shell;
     }

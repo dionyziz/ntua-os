@@ -3,6 +3,7 @@ hello
 prog
 scheduler
 scheduler-shell
+scheduler-shell-solution
 scheduler-solution
 shell
 strace-test
