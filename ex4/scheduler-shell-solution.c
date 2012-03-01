@@ -98,6 +98,7 @@ sched_create_task(char *executable)
             strncpy(procnames[i], executable, 20);
             childid[i] = child;
             alive[i] = 1;
+            priorities[i] = PRIORITY_LOW;
 
             return;
         }
